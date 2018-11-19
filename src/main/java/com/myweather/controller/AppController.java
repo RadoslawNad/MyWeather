@@ -50,25 +50,15 @@ public class AppController {
 	@RequestMapping("/display")
 	public String displayWeather(Model model) {
 
-		// historyService.saveHistory(displayObjectService.getObject());
+		historyService.saveHistory(displayObjectService.getObject());
 		model.addAttribute("objectToDisplay", displayObjectService.getObject());
 		return "displayWeather";
 	}
 
-//	 @RequestMapping("/history")
-//	 public String displayHistory(Exception ex,Model model) {
-//		 throw new RuntimeException() ;
-//	 }
-
 	@RequestMapping("/history")
-	public String displayHistory(Model model) throws Exception{
-		List<WeatherObject>history=historyService.getHistory();
-		if(history!=null){
-			model.addAttribute("allHistory", history);
-		}
-		else{
-			throw new RuntimeException();
-		}
+	public String displayHistory(Model model) throws Exception {
+		List<WeatherObject> history = historyService.getHistory();
+		model.addAttribute("allHistory", history);
 		return "history";
 	}
 

@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <Configuration>
   <Appenders>
 
@@ -28,12 +29,6 @@
 
     <!-- Logger to add JDBC bind parameters -->
     <Logger name="org.hibernate.type.descriptor.sql" level="trace" additivity="false">
-      <AppenderRef ref="consoleAppender" />
-      <AppenderRef ref="fileAppender" />
-    </Logger>
-
-    <!-- Logger for custom packages -->
-    <Logger name="com.infotech.client" level="debug" additivity="false">
       <AppenderRef ref="consoleAppender" />
       <AppenderRef ref="fileAppender" />
     </Logger>

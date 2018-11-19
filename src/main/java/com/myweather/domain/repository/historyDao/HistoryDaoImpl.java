@@ -18,25 +18,32 @@ import com.myweather.util.HibernateUtil;
 
 @Repository
 public class HistoryDaoImpl implements HistoryDao {
-	private static Logger logger = LogManager.getRootLogger();
-
+	private static final Logger logger = LogManager
+			.getLogger(HistoryDaoImpl.class);
 
 	public void saveHistory(WeatherObject weatherObject) {
-		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+		Session session = null;
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
 			session.beginTransaction();
 			session.persist(weatherObject);
 			session.getTransaction().commit();
-
+			logger.info("History saved successful with data name: "
+					+ weatherObject.getStationName());
 		} catch (HibernateException e) {
-			e.printStackTrace();
-			logger.error("HistoryDaoImpl/saveHistory().Exception while getting session: "+e);
+			logger.error("saveHistory().Exception while getting session. Message:  "
+					+ e);
+		} finally {
+			if (session != null) {
+				session.close();
+			}
 		}
 	}
 
 	public List<WeatherObject> getHistory() {
-		Session session=null;
+		Session session = null;
 		List<WeatherObject> weatherObject = null;
-		try  {
+		try {
 			session = HibernateUtil.getSessionFactory().openSession();
 			session.beginTransaction();
 			CriteriaBuilder builder = session.getCriteriaBuilder();
@@ -47,12 +54,15 @@ public class HistoryDaoImpl implements HistoryDao {
 			Query<WeatherObject> q = session.createQuery(query);
 			weatherObject = q.getResultList();
 			session.getTransaction().commit();
-			
-		} catch (HibernateException e) {
-			logger.error("HistoryDaoImpl/getHistory().Exception while getting session: "+e);
+			logger.info("History data downloaded successful.");
 
-		}finally{
-			session.close();
+		} catch (HibernateException e) {
+			logger.error("getHistory().Exception while getting session. Message "
+					+ e);
+		} finally {
+			if (session != null) {
+				session.close();
+			}
 		}
 		return weatherObject;
 	}

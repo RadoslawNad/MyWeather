@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<%@ page contentType="text/html; charset=UTF-8" %>
-
+<%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
@@ -10,6 +9,14 @@
 <link rel="stylesheet"
 	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
 <title>History</title>
+
+<c:if test="${not empty error}">
+	<div class="alert alert-danger">
+		<spring:message
+			code="AbstractUserDetailsAuthenticationProvider.badCredentials" />
+		<br />
+	</div>
+</c:if>
 <style>
 #history {
 	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
