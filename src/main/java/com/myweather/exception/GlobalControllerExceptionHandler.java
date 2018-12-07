@@ -14,9 +14,8 @@ class GlobalControllerExceptionHandler {
 	@ExceptionHandler(value = SessionFactoryError.class)
 	public String handleSessionFactoryException(SessionFactoryError e,Model model) {
 		logger.error("handleException(). Exception ocurred. Message: "+ e);
-		String message="Can not get a connection to the server";
+		String message="Can not get a connection to the database.";
 		model.addAttribute("message", message);
 		return "exception";
 	}
-
 }

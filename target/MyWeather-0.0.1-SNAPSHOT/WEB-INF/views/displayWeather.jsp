@@ -1,5 +1,5 @@
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ page contentType="text/html; charset=UTF-8"%>
 
 <html>
 <head>
@@ -38,7 +38,8 @@
 					<strong>Humidity: </strong>${objectToDisplay.humidity}%
 				</p>
 				<p>
-					<strong>Precipitation summary: </strong>${objectToDisplay.precipitationSummary} mm
+					<strong>Precipitation summary: </strong>${objectToDisplay.precipitationSummary}
+					mm
 				</p>
 				<p>
 					<strong>Pressure: </strong>${objectToDisplay.pressure} hPa
@@ -47,7 +48,6 @@
 				<a href="<spring:url value="/location" />" class="btn btn-default">
 					<span class="glyphicon-hand-left glyphicon"></span> Back
 				</a>
-
 			</div>
 		</div>
 	</section>

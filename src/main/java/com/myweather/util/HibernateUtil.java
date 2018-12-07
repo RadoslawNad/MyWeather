@@ -8,14 +8,12 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
-import com.myweather.exception.SessionFactoryError;
-
 public class HibernateUtil {
 	private static StandardServiceRegistry registry;
 	private static SessionFactory sessionFactory;
 	private static final Logger logger = LogManager.getLogger(HibernateUtil.class);
 
-	public static SessionFactory getSessionFactory() {
+	public static SessionFactory getSessionFactory() throws Exception{
 		if (sessionFactory == null) {
 			try {
 				// Create registry
@@ -33,11 +31,10 @@ public class HibernateUtil {
 				
 				logger.info("getSessionFactory(): Session Factory created");
 			} catch (Exception e) {
-				logger.error("getSessionFactory(): Exception while initializing hibernate util. Message: "+e);	
+				logger.error("getSessionFactory(): Exception while initializing hibernate util. Message: "+e.getMessage());	
 				if (registry != null) {
 					StandardServiceRegistryBuilder.destroy(registry);
 				}
-				throw new SessionFactoryError();
 			}
 		}
 		return sessionFactory;

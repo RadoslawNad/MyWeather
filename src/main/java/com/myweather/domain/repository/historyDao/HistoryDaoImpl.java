@@ -5,15 +5,14 @@ import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
-
 import com.myweather.domain.WeatherObject;
+import com.myweather.exception.SessionFactoryError;
 import com.myweather.util.HibernateUtil;
 
 @Repository
@@ -32,6 +31,9 @@ public class HistoryDaoImpl implements HistoryDao {
 					+ weatherObject.getStationName());
 		} catch (HibernateException e) {
 			logger.error("saveHistory().Exception while getting session. Message:  "
+					+ e);
+		} catch (Exception e) {
+			logger.error("saveHistory().No connection to the database.  "
 					+ e);
 		} finally {
 			if (session != null) {
@@ -59,6 +61,11 @@ public class HistoryDaoImpl implements HistoryDao {
 		} catch (HibernateException e) {
 			logger.error("getHistory().Exception while getting session. Message "
 					+ e);
+		} catch (Exception e) {
+			logger.error("getHistory().No connection to the database.  "
+					+ e);
+			throw new SessionFactoryError();
+
 		} finally {
 			if (session != null) {
 				session.close();

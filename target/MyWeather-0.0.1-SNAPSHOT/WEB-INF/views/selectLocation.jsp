@@ -16,9 +16,9 @@
 		<p>Choose a city to show the weather.</p>
 	</div>
 	<div>
-		<form:form modelAttribute="locationToShow">
+		<form:form modelAttribute="locationToShow" method="POST"
+			action="/MyWeather/weather">
 			<form:select path="stationName" items="${cities}" />
-
 			<input type="submit" id="btnAdd" class="btn btn-primary" value="Show" />
 		</form:form>
 	</div>

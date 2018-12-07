@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: com.myweather.service.ApiServiceTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.374 s <<< FAILURE! - in com.myweather.service.ApiServiceTest
+do_encode_string  Time elapsed: 0.01 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <Łódź> but was: <?�d?>
+	at com.myweather.service.ApiServiceTest.do_encode_string(ApiServiceTest.java:30)
+

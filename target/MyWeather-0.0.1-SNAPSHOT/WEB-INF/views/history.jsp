@@ -10,13 +10,6 @@
 	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
 <title>History</title>
 
-<c:if test="${not empty error}">
-	<div class="alert alert-danger">
-		<spring:message
-			code="AbstractUserDetailsAuthenticationProvider.badCredentials" />
-		<br />
-	</div>
-</c:if>
 <style>
 #history {
 	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
