@@ -22,10 +22,10 @@ public class AppController {
 
 	@Autowired
 	private ApiService apiService;
-
 	@Autowired
 	private HistoryService historyService;
 
+	
 	@RequestMapping()
 	public String welcome() {
 		return "welcome";

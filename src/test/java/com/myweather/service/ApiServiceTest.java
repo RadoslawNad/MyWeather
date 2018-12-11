@@ -4,13 +4,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
-import org.junit.platform.runner.JUnitPlatform;
+
 
 
 import com.myweather.service.impl.ApiServiceImpl;
 
-@RunWith(JUnitPlatform.class)
+
 class ApiServiceTest {
 
 	static ApiServiceImpl apiServiceImpl;
