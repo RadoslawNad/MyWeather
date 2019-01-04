@@ -17,6 +17,7 @@ import com.myweather.util.HibernateUtil;
 
 @Repository
 public class HistoryDaoImpl implements HistoryDao {
+	
 	private static final Logger logger = LogManager
 			.getLogger(HistoryDaoImpl.class);
 

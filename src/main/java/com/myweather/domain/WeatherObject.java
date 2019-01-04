@@ -29,7 +29,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 })
 
 @Entity
-@Table(name="history")
+@Table(name="History")
 public class WeatherObject {
 
 @Id
