@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.myweather.domain.WeatherObject;
-import com.myweather.domain.repository.historyDao.HistoryDao;
+import com.myweather.model.WeatherObject;
+import com.myweather.repository.HistoryDao;
 import com.myweather.service.HistoryService;
 
 @Service

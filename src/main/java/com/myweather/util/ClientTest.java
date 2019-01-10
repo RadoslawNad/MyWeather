@@ -1,15 +1,12 @@
 package com.myweather.util;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import com.myweather.domain.User;
+//import org.hibernate.SessionFactory;
+//import org.springframework.beans.factory.annotation.Autowired;
 
 public class ClientTest {
 	
-	@Autowired
-	private static SessionFactory sessionFactory;
+//	@Autowired
+//	private static SessionFactory sessionFactory;
 	
 	public static void main(String[] args){
 //	

@@ -1,13 +1,16 @@
 package com.myweather.service.impl;
 
 import java.util.Arrays;
+
 import javax.persistence.EntityExistsException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import com.myweather.domain.User;
-import com.myweather.domain.repository.RoleRepository;
-import com.myweather.domain.repository.userDao.UserRepository;
+
+import com.myweather.model.User;
+import com.myweather.repository.RoleRepository;
+import com.myweather.repository.UserRepository;
 import com.myweather.service.UserService;
 
 @Service

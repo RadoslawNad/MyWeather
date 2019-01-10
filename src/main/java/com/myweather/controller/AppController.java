@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.myweather.domain.WeatherObject;
+import com.myweather.model.WeatherObject;
 import com.myweather.service.ApiService;
 import com.myweather.service.HistoryService;
 

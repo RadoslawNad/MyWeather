@@ -1,8 +1,8 @@
 package com.myweather.service;
 
 import java.util.List;
+import com.myweather.model.WeatherObject;
 
-import com.myweather.domain.WeatherObject;
 
 public interface ApiService {
 	public void populateList();
