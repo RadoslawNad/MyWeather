@@ -14,7 +14,7 @@
 </style>
 </head>
 <body>
-	<h3 align="center">${headerMessage}</h3>
+	<h2 align="center">${headerMessage}</h2>
 	<form:form modelAttribute="user" method="POST" action="/MyWeather/user/processRegistration">
 		<table align="center">
 			<caption align="top">User registration form</caption>

@@ -33,10 +33,10 @@ public class ApiServiceImpl implements ApiService {
 	public WeatherObject getLocationByName(String name) {
 
 		
-		return weatherApi.getLocationByName(StringEncoding(name));
+		return weatherApi.getLocationByName(stringEncoding(name));
 	}
 	
-	public String StringEncoding(String string){
+	public String stringEncoding(String string){
 		try {
 			string = new String(string.getBytes("ISO8859_1"), "UTF8");
 		} catch (UnsupportedEncodingException e) {

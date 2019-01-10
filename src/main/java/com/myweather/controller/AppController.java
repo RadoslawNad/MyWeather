@@ -22,11 +22,12 @@ public class AppController {
 
 	@Autowired
 	private ApiService apiService;
+	
 	@Autowired
 	private HistoryService historyService;
 
 	
-	@RequestMapping()
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String welcome() {
 		return "welcome";
 	}

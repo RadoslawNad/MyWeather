@@ -72,4 +72,11 @@ public class WeatherApiImpl implements WeatherApi {
 		return locatiobByName;
 	}
 
+	public List<WeatherObject> getWeatherList() {
+		return weatherList;
+	}
+
+	public void setWeatherList(List<WeatherObject> weatherList) {
+		this.weatherList = weatherList;
+	}
 }

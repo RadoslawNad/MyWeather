@@ -24,7 +24,7 @@ class ApiServiceTest {
 
 		String city = "Łódź";
 
-		String result = apiServiceImpl.StringEncoding(city);
+		String result = apiServiceImpl.stringEncoding(city);
 
 		assertEquals(city, result);
 	}

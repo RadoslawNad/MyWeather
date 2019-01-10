@@ -1,10 +1,10 @@
 package com.myweather.service;
 
+
 import com.myweather.domain.User;
 
-public interface UserService {
+public interface UserService{
+		
+	public void registerNewUserAccount(User registerUser);
 	
-	public boolean saveUser(User user);
-
-	public User validateUserCredential(String email, String password); 
 }

@@ -19,14 +19,16 @@
 	<h2 align="center">
 		<spring:message code="view.login.title" />
 	</h2>
-	<p style="color: red;">
-	<c:if test="${not empty error}" >
-		<spring:message code="view.login.error"/>
-	</c:if>
-	</p>
 	<form:form action="/MyWeather/user/login" method="POST"
 		modelAttribute="userCredential">
-		<table>
+
+		<table align="center">
+			<tr>
+				<td style="color: red;"> <c:if test="${not empty error}">
+						<spring:message code="view.login.error" />
+					</c:if>
+				</td>
+			</tr>
 			<tr>
 				<td><spring:message code="view.login.label.username" /></td>
 				<td><form:input path="email" /></td>

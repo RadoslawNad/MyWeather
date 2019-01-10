@@ -7,7 +7,7 @@ public class SpringwebInitializer extends AbstractAnnotationConfigDispatcherServ
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
 		// TODO Auto-generated method stub
-		return new Class[] {WebSecurityConfig.class};
+		return new Class[] {RootConfig.class,HibernateConf.class};
 	}
 
 	@Override

@@ -1,40 +1,67 @@
 package com.myweather.domain;
 
-import javax.persistence.Column;
+import java.util.Collection;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="table")
+@Table(name = "ROLE")
 public class Role {
-	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="role_id")
-	private int roleId;
-	
-	@Column(name="role")
-	private String role;
-	
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+
+	private String name;
+
+	@ManyToMany(mappedBy = "roles")
+	private Collection<User> users;
+
+	@ManyToMany
+	@JoinTable(name = "roles_privileges", joinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "privilege_id", referencedColumnName = "id"))
+	private Collection<Privilege> privileges;
+
 	public Role() {
 	}
-
-	public int getRoleId() {
-		return roleId;
+	public Role(String name) {
+		this.name = name;
 	}
 
-	public void setRoleId(int roleId) {
-		this.roleId = roleId;
+	public Long getId() {
+		return id;
 	}
 
-	public String getRole() {
-		return role;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
-	public void setRole(String role) {
-		this.role = role;
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Collection<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(Collection<User> users) {
+		this.users = users;
+	}
+
+	public Collection<Privilege> getPrivileges() {
+		return privileges;
+	}
+
+	public void setPrivileges(Collection<Privilege> privileges) {
+		this.privileges = privileges;
 	}
 }
