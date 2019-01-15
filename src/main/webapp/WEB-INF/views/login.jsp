@@ -1,49 +1,112 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+
+<!doctype html>
+<html lang="en">
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
-<style type="text/css">
-.error {
-	color: red;
-}
-</style>
+
+<title>Login Page</title>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Reference Bootstrap files -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 </head>
-<body>
-	<h2 align="center">
-		<spring:message code="view.login.title" />
-	</h2>
-	<form:form action="/MyWeather/user/login" method="POST"
-		modelAttribute="userCredential">
 
-		<table align="center">
-			<tr>
-				<td style="color: red;"> <c:if test="${not empty error}">
-						<spring:message code="view.login.error" />
-					</c:if>
-				</td>
-			</tr>
-			<tr>
-				<td><spring:message code="view.login.label.username" /></td>
-				<td><form:input path="email" /></td>
-				<td><form:errors path="email" cssClass="error" /></td>
-			</tr>
-			<tr>
-				<td><spring:message code="view.login.label.password" /></td>
-				<td><form:password path="password" /></td>
-				<td><form:errors path="password" cssClass="error" /></td>
-			</tr>
-			<tr>
-				<td><input type="submit"
-					value=<spring:message code="view.login.button.login"/>></td>
-			</tr>
-		</table>
-	</form:form>
+<body>
+
+	<div>
+
+		<div id="loginbox" style="margin-top: 50px;"
+			class="mainbox col-md-3 col-md-offset-2 col-sm-6 col-sm-offset-2">
+
+			<div class="panel panel-info">
+
+				<div class="panel-heading">
+					<div class="panel-title">
+						<spring:message code="view.login.title" />
+					</div>
+				</div>
+
+				<div style="padding-top: 30px" class="panel-body">
+
+					<!-- Login Form -->
+					<form:form
+						action="${pageContext.request.contextPath}/authenticateTheUser"
+						method="POST" class="form-horizontal">
+
+						<!-- Place for messages: error, alert etc ... -->
+						<div class="form-group">
+							<div class="col-xs-15">
+								<div>
+
+									<!-- Check for login error -->
+
+									<c:if test="${param.error != null}">
+
+										<div class="alert alert-danger col-xs-offset-1 col-xs-10">
+											<spring:message code="view.login.error" />
+										</div>
+
+									</c:if>
+									<c:if test="${param.logout != null}">
+										<div class="alert alert-success col-xs-offset-1 col-xs-10">
+											<spring:message code="view.login.message.logout" />
+										</div>
+
+									</c:if>
+
+								</div>
+							</div>
+						</div>
+
+						<!-- User name -->
+						<div style="margin-bottom: 25px" class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-user"></i></span> <input type="text"
+								name="username"
+								placeholder=<spring:message code="view.login.label.username" />
+								class="form-control">
+						</div>
+
+						<!-- Password -->
+						<div style="margin-bottom: 25px" class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-lock"></i></span> <input type="password"
+								name="password"
+								placeholder=<spring:message code="view.login.label.password" />
+								class="form-control">
+						</div>
+
+						<!-- Login/Submit Button -->
+						<div style="margin-top: 10px" class="form-group">
+							<div class="col-sm-6 controls">
+								<button type="submit" class="btn btn-success">
+									<spring:message code="view.login.button.login" />
+								</button>
+							</div>
+						</div>
+
+					</form:form>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
 </body>
 </html>

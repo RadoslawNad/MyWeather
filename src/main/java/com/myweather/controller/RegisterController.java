@@ -14,8 +14,7 @@ import com.myweather.model.User;
 import com.myweather.service.UserService;
 
 @Controller
-@RequestMapping(value="/user")
-public class UserController {
+public class RegisterController {
 
 	@Autowired
 	private UserService userService;
@@ -23,33 +22,20 @@ public class UserController {
 	@RequestMapping(value ="/register" ,method=RequestMethod.GET)
 	public String registerPage(Model model){
 		model.addAttribute("user", new User());
-		return "register";
+		return "registration-form";
 	}
 	
-	@RequestMapping(value ="/processRegistration" ,method=RequestMethod.POST)
+	@RequestMapping(value ="/processRegistrationForm" ,method=RequestMethod.POST)
 	public String processRegistration(@Valid @ModelAttribute("user") User user, BindingResult result, Model model ){
 		
-		
 	    if (!result.hasErrors()) {
-	        userService.registerNewUserAccount(user);
+	    	userService.save(user);
 	    }
 	 
 		if (result.hasErrors()) {
 			return "register";
 		}	
-			return "redirect:/location";
+			return "registration-confirmation";
 	}
-	
-//	@RequestMapping(value ="/login" ,method=RequestMethod.GET)
-//	public String loginPage(Model model){
-//		model.addAttribute("userCredential", new UserCredential());
-//		return "login";
-//	}
-//	
-//	@RequestMapping(value ="/login" ,method=RequestMethod.POST)
-//	public String loginSuccess(@Valid @ModelAttribute("userCredential") UserCredential userCredential,BindingResult result, Model model){
-//
-//		return "redirect:/location";
-//	}
 	
 }

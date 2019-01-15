@@ -34,7 +34,6 @@ public class AppController {
 
 	@RequestMapping(value = "/location", method = RequestMethod.GET)
 	public String getLocationForm(Model model) {
-
 		apiService.populateList();
 		model.addAttribute("cities", apiService.getLocationsName());
 		model.addAttribute("locationToShow", new WeatherObject());

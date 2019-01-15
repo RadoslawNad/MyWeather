@@ -17,10 +17,10 @@
 	</h3>
 	<table align="center">
 		<tr>
-			<td><a href="<spring:url value="/user/login"/>"
+			<td><a href="<spring:url value="/login"/>"
 				class="btn btn-default"><spring:message
 						code="view.welcome.button.login" /></a></td>
-			<td><a href="<spring:url value="/user/register"/>"
+			<td><a href="<spring:url value="/register"/>"
 				class="btn btn-default"><spring:message
 						code="view.welcome.button.register" /></a></td>
 		</tr>

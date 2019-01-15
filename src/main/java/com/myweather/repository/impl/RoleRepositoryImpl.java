@@ -24,7 +24,7 @@ public class RoleRepositoryImpl implements RoleRepository{
 	}
 	
 	@Override
-	public Role findByName(String name) {
+	public Role findByRole(String name) {
 		CriteriaBuilder builder = currentSession().getCriteriaBuilder();
         CriteriaQuery<Role> query = builder.createQuery(Role.class);
         Root<Role> root = query.from(Role.class);
