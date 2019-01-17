@@ -38,13 +38,11 @@ public class UserServiceImpl implements UserService {
 	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
 		User user = userRepository.findByUsername(userName);
 		if (user == null) {
-		throw new UsernameNotFoundException("Invalid username or password.");
+			throw new UsernameNotFoundException("Invalid username or password.");
 		}
-		return new
-		org.springframework.security.core.userdetails.User(user.getUsername(),
-		user.getPassword(),
-		mapRolesToAuthorities(user.getRoles()));
-		}
+		return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
+				mapRolesToAuthorities(user.getRoles()));
+	}
 
 	private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles) {
 		return roles.stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
@@ -58,10 +56,11 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void save(User registerUser) {
 
-		if (emailExist(registerUser.getUsername())) {
-			throw new EntityExistsException("There is an account with that email adress: " + registerUser.getUsername());
+		if (isEmailExist(registerUser.getUsername())) {
+			throw new EntityExistsException(
+					"There is an account with that email adress: " + registerUser.getUsername());
 		}
-		
+
 		User user = new User();
 		user.setName(registerUser.getName());
 		user.setPassword(passwordEncoder.encode(registerUser.getPassword()));
@@ -71,7 +70,7 @@ public class UserServiceImpl implements UserService {
 		userRepository.save(user);
 	}
 
-	private boolean emailExist(String email) {
+	private boolean isEmailExist(String email) {
 		User user = userRepository.findByUsername(email);
 		if (user != null) {
 			return true;

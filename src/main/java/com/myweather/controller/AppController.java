@@ -2,7 +2,11 @@ package com.myweather.controller;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -19,6 +23,9 @@ import com.myweather.service.HistoryService;
 
 @Controller
 public class AppController {
+	
+	@Resource(name="authenticationManager")
+	private AuthenticationManager authManager;
 
 	@Autowired
 	private ApiService apiService;
@@ -33,7 +40,8 @@ public class AppController {
 	}
 
 	@RequestMapping(value = "/location", method = RequestMethod.GET)
-	public String getLocationForm(Model model) {
+	public String getLocationForm(Model model,HttpServletRequest request) {
+
 		apiService.populateList();
 		model.addAttribute("cities", apiService.getLocationsName());
 		model.addAttribute("locationToShow", new WeatherObject());

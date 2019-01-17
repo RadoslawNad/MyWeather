@@ -13,19 +13,28 @@
 <title>Select locations</title>
 </head>
 <body>
-	<p>
-		Welcome:
-		<security:authentication property="principal.username" />
-		<br/>
-		<security:authentication property="principal.authorities" />
-		<br/>
-	</p>
-	<form:form action="${pageContext.request.contextPath}/logout"
-		method="POST" class="form-horizontal">
-		<div>
-			<input type="submit" value="Logout" />
-		</div>
-	</form:form>
+
+	<security:authorize access="!isAuthenticated()">
+  		<p>
+			Welcome: GUEST
+		</p>
+	</security:authorize>
+	<security:authorize access="isAuthenticated()">
+		<p>
+			Welcome:
+			<security:authentication property="principal.username" />
+			<br />
+			<security:authentication property="principal.authorities" />
+			<br />
+		</p>
+		<form:form action="${pageContext.request.contextPath}/logout"
+			method="POST" class="form-horizontal">
+			<div>
+				<input type="submit" value="Logout" />
+			</div>
+		</form:form>
+	</security:authorize>
+
 	<div>
 		<h1>LOCATION</h1>
 		<p>Choose a city to show the weather.</p>
@@ -40,6 +49,11 @@
 	<div>
 		<a href="<spring:url value="/history" />" class="btn btn-default">
 			<span class="glyphicon glyphicon-folder-open"></span> History
+		</a>
+	</div>
+		<div>
+		<a href="<spring:url value="/" />" class="btn btn-default">
+			<span class="glyphicon glyphicon-menu-left"></span> Back
 		</a>
 	</div>
 </body>
