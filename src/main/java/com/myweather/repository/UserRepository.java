@@ -4,8 +4,8 @@ import com.myweather.model.User;
 
 public interface UserRepository{
 		
-	public User findByUsername(String username);
+	public User findUser(String username);
 	
-	public void save(User registerUser);
+	public void saveUser(User user);
 	
 }

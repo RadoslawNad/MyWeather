@@ -1,18 +1,24 @@
 package com.myweather.repository.impl;
 
+import java.util.Arrays;
 import java.util.List;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.myweather.model.User;
 import com.myweather.model.WeatherObject;
 import com.myweather.repository.HistoryDao;
+import com.myweather.repository.UserRepository;
 
 @Repository
 public class HistoryDaoImpl implements HistoryDao {
+	
+	@Autowired
+	private UserRepository userRepository;
 
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -22,16 +28,27 @@ public class HistoryDaoImpl implements HistoryDao {
 	}
 
 	@Override
-	public void saveHistory(WeatherObject weatherObject) {
-		currentSession().save(weatherObject);
+	public void saveHistory(String currentlyUsername,WeatherObject watherData) {
+		User user=userRepository.findUser(currentlyUsername);
+		user.setHistory(Arrays.asList(watherData));	
+		currentSession().save(user);
+	}
+	
+
+	@Override
+	public List<User> getAllHistory() {	
+		Query<User>query=currentSession().createQuery("SELECT u FROM User u ORDER BY u.username ASC",User.class);
+		List<User>allHistoryList=query.getResultList();
+		return allHistoryList;
 	}
 
 	@Override
-	public List<WeatherObject> getHistory() {
-		CriteriaBuilder builder = currentSession().getCriteriaBuilder();
-		CriteriaQuery<WeatherObject> criteria = builder.createQuery(WeatherObject.class);
-		criteria.from(WeatherObject.class);
-		List<WeatherObject> history = currentSession().createQuery(criteria).getResultList();
-		return history;
+	public List<User> getUserHistory(String currentlyUsername) {	
+		Query<User>query=currentSession().createQuery("SELECT u FROM User u WHERE u.username=:theUsername",User.class);
+		query.setParameter("theUsername", currentlyUsername);
+		List<User> historyList=query.getResultList();
+		return historyList;
 	}
+	
+	
 }

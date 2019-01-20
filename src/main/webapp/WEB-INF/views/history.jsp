@@ -17,7 +17,7 @@
 	width: 100%;
 }
 
-#history td,#history th {
+#history td, #history th {
 	border: 1px solid #ddd;
 	padding: 8px;
 }
@@ -46,6 +46,7 @@
 	<div>
 		<table id="history">
 			<tr>
+				<th>Username</th>
 				<th>Nr.</th>
 				<th>City</th>
 				<th>Date of measurement</th>
@@ -57,20 +58,28 @@
 				<th>Precipitation summary (mm)</th>
 				<th>Pressure (hPa)</th>
 			</tr>
-			<c:forEach var="allHistory" items="${allHistory}" varStatus="status">
+			<c:forEach var="users" items="${users}">
 				<tr>
-					<td>${status.count}</td>
-					<td>${allHistory.stationName}</td>
-					<td>${allHistory.dateOfMeasurement}</td>
-					<td>${allHistory.timeOfMeasurement}:00</td>
-					<td>${allHistory.temperature}</td>
-					<td>${allHistory.windSpeed}</td>
-					<td>${allHistory.windDirection}</td>
-					<td>${allHistory.humidity}</td>
-					<td>${allHistory.precipitationSummary}</td>
-					<td>${allHistory.pressure}</td>
+					<td>${users.username}</td>
 				</tr>
+
+				<c:forEach var="history" items="${users.history}" varStatus="status">
+					<tr>
+						<td></td>
+						<td>${status.count}</td>
+						<td>${history.stationName}</td>
+						<td>${history.dateOfMeasurement}</td>
+						<td>${history.timeOfMeasurement}:00</td>
+						<td>${history.temperature}</td>
+						<td>${history.windSpeed}</td>
+						<td>${history.windDirection}</td>
+						<td>${history.humidity}</td>
+						<td>${history.precipitationSummary}</td>
+						<td>${history.pressure}</td>
+					</tr>
+				</c:forEach>
 			</c:forEach>
+
 		</table>
 	</div>
 	<a href="<spring:url value="/location" />" class="btn btn-default">

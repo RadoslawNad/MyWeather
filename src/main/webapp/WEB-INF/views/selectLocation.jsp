@@ -15,9 +15,7 @@
 <body>
 
 	<security:authorize access="!isAuthenticated()">
-  		<p>
-			Welcome: GUEST
-		</p>
+		<p>Welcome: GUEST</p>
 	</security:authorize>
 	<security:authorize access="isAuthenticated()">
 		<p>
@@ -46,14 +44,33 @@
 			<input type="submit" id="btnAdd" class="btn btn-primary" value="Show" />
 		</form:form>
 	</div>
-	<div>
-		<a href="<spring:url value="/history" />" class="btn btn-default">
-			<span class="glyphicon glyphicon-folder-open"></span> History
-		</a>
-	</div>
+
+	<security:authorize access="hasRole('ADMIN')">
 		<div>
-		<a href="<spring:url value="/" />" class="btn btn-default">
-			<span class="glyphicon glyphicon-menu-left"></span> Back
+			<a href="<spring:url value="/history" />" class="btn btn-default">
+				<span class="glyphicon glyphicon-folder-open"></span>All history
+			</a>
+		</div>
+		<div>
+			<a href="<spring:url value="/userhistory" />"
+				class="btn btn-default"> <span
+				class="glyphicon glyphicon-folder-open"></span> History
+			</a>
+		</div>
+	</security:authorize>
+
+	<security:authorize access="hasRole('USER')">
+		<div>
+			<a href="<spring:url value="/userhistory" />"
+				class="btn btn-default"> <span
+				class="glyphicon glyphicon-folder-open"></span> History
+			</a>
+		</div>
+	</security:authorize>
+
+	<div>
+		<a href="<spring:url value="/" />" class="btn btn-default"> <span
+			class="glyphicon glyphicon-menu-left"></span> Back
 		</a>
 	</div>
 </body>

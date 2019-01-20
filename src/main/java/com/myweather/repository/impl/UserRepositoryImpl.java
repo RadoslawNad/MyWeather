@@ -1,18 +1,15 @@
 package com.myweather.repository.impl;
 
 import javax.persistence.NoResultException;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.hibernate.NonUniqueResultException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
 import com.myweather.model.User;
 import com.myweather.repository.UserRepository;
 
@@ -29,27 +26,24 @@ public class UserRepositoryImpl implements UserRepository {
 	}
 
 	@Override
-	public void save(User registerUser) {
-		logger.info("New user added with username" + registerUser.getUsername());
-		currentSession().save(registerUser);
+	public void saveUser(User user) {
+		logger.info("New user added with username" + user.getUsername());
+		currentSession().save(user);
 	}
 
 	@Override
-	public User findByUsername(String username) {
+	public User findUser(String username) {
 		logger.info("Find user with email" + username);
-
-		CriteriaBuilder builder = currentSession().getCriteriaBuilder();
-		CriteriaQuery<User> query = builder.createQuery(User.class);
-		Root<User> root = query.from(User.class);
-		query.select(root).where(builder.equal(root.get("username"), username));
-		Query<User> q = currentSession().createQuery(query);
+		User user = null;
 		try {
-			return q.getSingleResult();
-		} catch (final NoResultException nre) {
-			return null;
-		} catch (final NonUniqueResultException nre) {
+			Query<User> query = currentSession().createQuery("SELECT u FROM User u WHERE u.username=:theUsername",
+					User.class);
+			query.setParameter("theUsername", username);
+			user = query.getSingleResult();
+		} catch (NoResultException e) {
 			return null;
 		}
+		return user;
 	}
 
 }

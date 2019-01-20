@@ -27,7 +27,7 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 	private RoleRepository roleRepository;
 
 	@Autowired
-	@Lazy 
+	@Lazy
 	private BCryptPasswordEncoder passwordEncoder;
 
 	@Override
@@ -39,9 +39,11 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 
 		createRoleIfNotFound("ROLE_ADMIN");
 		createRoleIfNotFound("ROLE_USER");
-		
-		createUserIfNotFound("user","USER");
-		createUserIfNotFound("admin","ADMIN");
+		createRoleIfNotFound("ROLE_GUEST");
+
+		createUserIfNotFound("guest", "GUEST");
+		createUserIfNotFound("user", "USER");
+		createUserIfNotFound("admin", "ADMIN");
 
 		alreadySetup = true;
 	}
@@ -56,20 +58,20 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 		}
 		return role;
 	}
-	
+
 	@Transactional
-	private User createUserIfNotFound(String name,String role) {
-		
-		User user = userRepository.findByUsername(name);
+	private User createUserIfNotFound(String name, String role) {
+
+		User user = userRepository.findUser(name);
 		if (user == null) {
-			Role userRole = roleRepository.findByRole("ROLE_"+role);
-			user=new User();
+			Role userRole = roleRepository.findByRole("ROLE_" + role);
+			user = new User();
 			user.setName(name);
 			user.setPassword(passwordEncoder.encode(name));
 			user.setUsername(name);
 			user.setRoles(Arrays.asList(userRole));
 			user.setEnabled(true);
-			userRepository.save(user);
+			userRepository.saveUser(user);
 		}
 		return user;
 	}

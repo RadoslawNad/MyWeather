@@ -2,6 +2,7 @@ package com.myweather.service.impl;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.persistence.EntityExistsException;
@@ -17,16 +18,20 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.myweather.model.Role;
 import com.myweather.model.User;
+import com.myweather.model.WeatherObject;
+import com.myweather.repository.HistoryDao;
 import com.myweather.repository.RoleRepository;
 import com.myweather.repository.UserRepository;
 import com.myweather.service.UserService;
 
 @Service
-@Transactional
 public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
+	
+	@Autowired
+	private HistoryDao historyDao;
 
 	@Autowired
 	private UserRepository userRepository;
@@ -35,8 +40,9 @@ public class UserServiceImpl implements UserService {
 	private RoleRepository roleRepository;
 
 	@Override
+	@Transactional
 	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-		User user = userRepository.findByUsername(userName);
+		User user = userRepository.findUser(userName);
 		if (user == null) {
 			throw new UsernameNotFoundException("Invalid username or password.");
 		}
@@ -49,12 +55,14 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User findByUserName(String userName) {
-		return userRepository.findByUsername(userName);
+	@Transactional
+	public User findByUsername(String username) {
+		return userRepository.findUser(username);
 	}
 
 	@Override
-	public void save(User registerUser) {
+	@Transactional
+	public void saveUser(User registerUser) {
 
 		if (isEmailExist(registerUser.getUsername())) {
 			throw new EntityExistsException(
@@ -67,11 +75,31 @@ public class UserServiceImpl implements UserService {
 		user.setUsername(registerUser.getUsername());
 		user.setRoles(Arrays.asList(roleRepository.findByRole("ROLE_USER")));
 		user.setEnabled(true);
-		userRepository.save(user);
+		userRepository.saveUser(user);
 	}
 
+
+	@Override
+	@Transactional
+	public void saveHistory(String currentlyUsername, WeatherObject weatherData) {	
+		historyDao.saveHistory(currentlyUsername,weatherData);	
+	}
+
+	@Override
+	@Transactional
+	public List<User> getAllHistory() {
+		return historyDao.getAllHistory();
+	}
+
+	@Override
+	@Transactional
+	public List<User> getUserHistory(String currentlyUsername) {
+		return historyDao.getUserHistory(currentlyUsername);
+	}
+	
+	@Transactional
 	private boolean isEmailExist(String email) {
-		User user = userRepository.findByUsername(email);
+		User user = userRepository.findUser(email);
 		if (user != null) {
 			return true;
 		}
