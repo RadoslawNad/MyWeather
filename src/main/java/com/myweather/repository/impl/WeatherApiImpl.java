@@ -3,8 +3,6 @@ package com.myweather.repository.impl;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -18,8 +16,7 @@ import com.myweather.repository.WeatherApi;
 
 @Repository
 public class WeatherApiImpl implements WeatherApi {
-	private static final Logger logger = LogManager
-			.getLogger(WeatherApiImpl.class);
+
 
 	public static final String JSON_URL = "https://danepubliczne.imgw.pl/api/data/synop";
 	private List<WeatherObject> weatherList;
@@ -39,9 +36,7 @@ public class WeatherApiImpl implements WeatherApi {
 					});
 
 		} catch (JsonProcessingException e) {
-			logger.error(e);
 		} catch (IOException e) {
-			logger.error(e);
 		}
 	}
 
