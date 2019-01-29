@@ -2,8 +2,6 @@ package com.myweather.controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -37,7 +35,7 @@ public class AppController {
 	}
 
 	@RequestMapping(value = "/location", method = RequestMethod.GET)
-	public String getLocationForm(Model model, HttpServletRequest request) {
+	public String getLocationForm(Model model) {
 
 		apiService.populateList();
 		model.addAttribute("cities", apiService.getLocationsName());

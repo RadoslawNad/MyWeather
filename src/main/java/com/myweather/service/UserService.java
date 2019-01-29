@@ -11,7 +11,7 @@ public interface UserService extends UserDetailsService {
 
 	public User findByUsername(String username);
 
-	public void saveUser(User user);
+	public boolean saveUser(User user);
 
 	public void saveHistory(String currentlyUsername, WeatherObject weatherData);
 

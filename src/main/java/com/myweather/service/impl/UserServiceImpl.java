@@ -5,8 +5,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.persistence.EntityExistsException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -62,11 +60,12 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	@Transactional
-	public void saveUser(User registerUser) {
+	public boolean saveUser(User registerUser) {
 
-		if (isEmailExist(registerUser.getUsername())) {
-			throw new EntityExistsException(
-					"There is an account with that email adress: " + registerUser.getUsername());
+		if (isUsernameExist(registerUser.getUsername())) {
+//			throw new EntityExistsException(
+//					"There is an account with that email adress: " + registerUser.getUsername());
+			return false;
 		}
 
 		User user = new User();
@@ -76,6 +75,8 @@ public class UserServiceImpl implements UserService {
 		user.setRoles(Arrays.asList(roleRepository.findByRole("ROLE_USER")));
 		user.setEnabled(true);
 		userRepository.saveUser(user);
+		
+		return true;
 	}
 
 
@@ -98,8 +99,8 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Transactional
-	private boolean isEmailExist(String email) {
-		User user = userRepository.findUser(email);
+	private boolean isUsernameExist(String username) {
+		User user = userRepository.findUser(username);
 		if (user != null) {
 			return true;
 		}

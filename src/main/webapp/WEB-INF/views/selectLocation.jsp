@@ -39,7 +39,7 @@
 	</div>
 	<div>
 		<form:form modelAttribute="locationToShow" method="POST"
-			action="/MyWeather/weather">
+			action="${pageContext.request.contextPath}/weather">
 			<form:select path="stationName" items="${cities}" />
 			<input type="submit" id="btnAdd" class="btn btn-primary" value="Show" />
 		</form:form>

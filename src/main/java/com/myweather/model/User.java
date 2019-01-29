@@ -15,6 +15,9 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 
 @Entity
 @Table(name = "users")
@@ -25,8 +28,15 @@ public class User {
 	private long id;
 
 	private String name;
+	
+	@NotBlank
+	@Size(min=2, max=20)
 	private String username;
+	
+	@NotBlank
+	@Size(min=5)
 	private String password;
+	
 	private boolean enabled;
 
 	@ManyToMany

@@ -34,10 +34,19 @@ public class LoginController {
 	@RequestMapping(value = "/processRegistrationForm", method = RequestMethod.POST)
 	public String processRegistration(@Valid @ModelAttribute("user") User user, BindingResult result, Model model) {
 
+		System.out.println("Binding"+ result);
+		
 		if (result.hasErrors()) {
-			return "register";
+			return "registration-form";
 		}
-		userService.saveUser(user);
+		
+		boolean userExists =userService.saveUser(user);
+		
+		if(userExists!=true) {
+			model.addAttribute("userExists", true);
+			return "registration-form";
+		}
+		
 		return "registration-confirmation";
 	}
 }

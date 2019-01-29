@@ -38,8 +38,6 @@ During the start of the application, tables are created in a specific database w
 ## Features
  To-do list:
   * adding unit and integration tests
-  * adding validation during login and user registration
-  * adding exceptions handling
   * changing the strategy of downloading data from EAGER to LAZY and removing the error related to this
   * improving the visual presentation of pages
   * adding a REST API to share user search history
