@@ -3,53 +3,68 @@
 
 <html>
 <head>
+<meta charset="utf-8">
+
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
 <link rel="stylesheet"
-	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
 <title>Weather</title>
 </head>
 <body>
-	<section>
-		<div class="jumbotron">
-			<div class="container">
-				<h1>Weather</h1>
-			</div>
+	<div class="container">
+
+		<div class="jumbotron  row justify-content-md-center ">
+			<h1>Weather</h1>
 		</div>
-	</section>
-	<section class="cointainer">
+
 		<div class="row">
 			<div class="col-md-5">
-				<h2>${objectToDisplay.stationName}</h2>
-				<p>
-					<strong>Date of measurement: </strong>${objectToDisplay.dateOfMeasurement}
-				</p>
-				<p>
-					<strong>Time of measurement: </strong>${objectToDisplay.timeOfMeasurement}:00
-				</p>
-				<p>
-					<strong>Temperature: </strong>${objectToDisplay.temperature} C
-				</p>
-				<p>
-					<strong>Wind speed: </strong>${objectToDisplay.windSpeed} m/s
-				</p>
-				<p>
-					<strong>Wind direction: </strong>${objectToDisplay.windDirection}
-				</p>
-				<p>
-					<strong>Humidity: </strong>${objectToDisplay.humidity}%
-				</p>
-				<p>
-					<strong>Precipitation summary: </strong>${objectToDisplay.precipitationSummary}
-					mm
-				</p>
-				<p>
-					<strong>Pressure: </strong>${objectToDisplay.pressure} hPa
-				</p>
-
-				<a href="<spring:url value="/location" />" class="btn btn-default">
-					<span class="glyphicon-hand-left glyphicon"></span> Back
-				</a>
+				<div>
+					<h2>${objectToDisplay.stationName}</h2>
+				</div>
+				
+				<div>
+					<p>
+						<strong>Date of measurement: </strong>${objectToDisplay.dateOfMeasurement}
+					</p>
+					<p>
+						<strong>Time of measurement: </strong>${objectToDisplay.timeOfMeasurement}:00
+					</p>
+					<p>
+						<strong>Temperature: </strong>${objectToDisplay.temperature} C
+					</p>
+					<p>
+						<strong>Wind speed: </strong>${objectToDisplay.windSpeed} m/s
+					</p>
+					<p>
+						<strong>Wind direction: </strong>${objectToDisplay.windDirection}
+					</p>
+					<p>
+						<strong>Humidity: </strong>${objectToDisplay.humidity}%
+					</p>
+					<p>
+						<strong>Precipitation summary: </strong>${objectToDisplay.precipitationSummary}
+						mm
+					</p>
+					<p>
+						<strong>Pressure: </strong>${objectToDisplay.pressure} hPa
+					</p>
+				</div>
+				
+				<div>
+					<a href="<spring:url value="/location" />" class="btn btn-link">
+						Back </a>
+				</div>
 			</div>
 		</div>
-	</section>
+	</div>
 </body>
 </html>

@@ -3,11 +3,13 @@ package com.myweather.repository.impl;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.client.RestTemplate;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -17,23 +19,21 @@ import com.myweather.repository.WeatherApi;
 @Repository
 public class WeatherApiImpl implements WeatherApi {
 
-
 	public static final String JSON_URL = "https://danepubliczne.imgw.pl/api/data/synop";
+
 	private List<WeatherObject> weatherList;
 
 	public void populateList() {
 		RestTemplate restTemplate = new RestTemplate();
-		ResponseEntity<List<WeatherObject>> rateResponse = restTemplate
-				.exchange(JSON_URL, HttpMethod.GET, null,
-						new ParameterizedTypeReference<List<WeatherObject>>() {
-						});
+		ResponseEntity<List<WeatherObject>> rateResponse = restTemplate.exchange(JSON_URL, HttpMethod.GET, null,
+				new ParameterizedTypeReference<List<WeatherObject>>() {
+				});
 		List<WeatherObject> weather = rateResponse.getBody();
 		try {
 			ObjectMapper mapper = new ObjectMapper();
 			String jsonArray = mapper.writeValueAsString(weather);
-			weatherList = mapper.readValue(jsonArray,
-					new TypeReference<List<WeatherObject>>() {
-					});
+			weatherList = mapper.readValue(jsonArray, new TypeReference<List<WeatherObject>>() {
+			});
 
 		} catch (JsonProcessingException e) {
 		} catch (IOException e) {
@@ -62,8 +62,7 @@ public class WeatherApiImpl implements WeatherApi {
 			}
 		}
 		if (locatiobByName == null) {
-			throw new IllegalArgumentException("Data was not found for: "
-					+ name);
+			throw new IllegalArgumentException("Data was not found for: " + name);
 		}
 		return locatiobByName;
 	}

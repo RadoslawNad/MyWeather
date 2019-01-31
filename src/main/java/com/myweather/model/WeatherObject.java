@@ -6,13 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-
-@JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({ "id_stacji", "stacja", "data_pomiaru", "godzina_pomiaru", "temperatura", "predkosc_wiatru",
-		"kierunek_wiatru", "wilgotnosc_wzgledna", "suma_opadu", "cisnienie" })
 
 @Entity
 @Table(name = "History")
@@ -24,22 +18,31 @@ public class WeatherObject {
 
 	@JsonProperty("id_stacji")
 	private String stationId;
+	
 	@JsonProperty("stacja")
 	private String stationName;
+	
 	@JsonProperty("data_pomiaru")
 	private String dateOfMeasurement;
+	
 	@JsonProperty("godzina_pomiaru")
 	private String timeOfMeasurement;
+	
 	@JsonProperty("temperatura")
 	private String temperature;
+	
 	@JsonProperty("predkosc_wiatru")
 	private String windSpeed;
+	
 	@JsonProperty("kierunek_wiatru")
 	private String windDirection;
+	
 	@JsonProperty("wilgotnosc_wzgledna")
 	private String humidity;
+	
 	@JsonProperty("suma_opadu")
 	private String precipitationSummary;
+	
 	@JsonProperty("cisnienie")
 	private String pressure;
 
