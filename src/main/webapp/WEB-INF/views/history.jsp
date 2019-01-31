@@ -8,7 +8,8 @@
 <head>
 <link rel="stylesheet"
 	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-<title>History</title>
+
+<title><spring:message code="view.history.label.header" /></title>
 
 <style>
 #history {
@@ -41,22 +42,25 @@
 </head>
 <body>
 	<div>
-		<h1>History</h1>
+		<h1>
+			<spring:message code="view.history.label.title" />
+		</h1>
 	</div>
 	<div>
 		<table id="history">
 			<tr>
-				<th>Username</th>
-				<th>Nr.</th>
-				<th>City</th>
-				<th>Date of measurement</th>
-				<th>Time of measurement</th>
-				<th>Temperature (C)</th>
-				<th>Wind speed (m/s)</th>
-				<th>Wind direction</th>
-				<th>Humidity(%)</th>
-				<th>Precipitation summary (mm)</th>
-				<th>Pressure (hPa)</th>
+				<th><spring:message code="view.history.table.label.username" /></th>
+				<th><spring:message code="view.history.table.label.number" /></th>
+				<th><spring:message code="view.history.table.label.city" /></th>
+				<th><spring:message code="view.history.table.label.date" /></th>
+				<th><spring:message code="view.history.table.label.time" /></th>
+				<th><spring:message code="view.history.table.label.temperature" /></th>
+				<th><spring:message code="view.history.table.label.wind.speed" /></th>
+				<th><spring:message code="view.history.table.label.wind.direction" /></th>
+				<th><spring:message code="view.history.table.label.humidity" /></th>
+				<th><spring:message
+						code="view.history.table.label.precipitation.summary" /></th>
+				<th><spring:message code="view.history.table.label.pressure" /></th>
 			</tr>
 			<c:forEach var="users" items="${users}">
 				<tr>
@@ -83,7 +87,8 @@
 		</table>
 	</div>
 	<a href="<spring:url value="/location" />" class="btn btn-default">
-		<span class="glyphicon-hand-left glyphicon"></span> Back
+		<span class="glyphicon-hand-left glyphicon"></span> <spring:message
+			code="button.login" />
 	</a>
 </body>
 </html>

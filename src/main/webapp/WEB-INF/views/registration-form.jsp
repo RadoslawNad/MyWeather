@@ -7,7 +7,7 @@
 
 <head>
 
-<title><spring:message code="view.register.title" /></title>
+<title><spring:message code="view.register.label.header" /></title>
 
 <meta charset="utf-8">
 <meta name="viewport"
@@ -16,12 +16,6 @@
 <!-- Reference Bootstrap files -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <style>
 .error {
@@ -33,7 +27,7 @@
 
 <body>
 
-	<div>
+	<div class="container">
 
 		<div id="loginbox" style="margin-top: 50px;"
 			class="mainbox col-md-3 col-md-offset-2 col-sm-6 col-sm-offset-2">
@@ -101,7 +95,7 @@
 						<div style="margin-top: 10px" class="form-group">
 							<div class="col-sm-6 controls">
 								<button type="submit" class="btn btn-primary">
-									<spring:message code="view.register.button.register" />
+									<spring:message code="button.register" />
 								</button>
 							</div>
 						</div>
@@ -116,5 +110,10 @@
 
 	</div>
 
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 </html>

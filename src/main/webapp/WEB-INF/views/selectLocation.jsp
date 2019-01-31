@@ -8,19 +8,13 @@
 <html>
 <head>
 <meta charset="utf-8">
-
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
-<title>Select locations</title>
+
+<title><spring:message code="view.login.label.header" /></title>
 </head>
 
 <body>
@@ -35,36 +29,36 @@
 					<security:authorize access="hasRole('USER')">
 						<div>
 							<a href="<spring:url value="/userhistory" />"
-								class="nav-link active"> History </a>
+								class="nav-link active"> <spring:message
+									code="view.select.location.link.user.history" />
+							</a>
 						</div>
 					</security:authorize>
 
 					<security:authorize access="hasRole('ADMIN')">
 						<div>
 							<a href="<spring:url value="/history" />" class="nav-link active">
-								All history </a>
+								<spring:message code="view.select.location.link.all.history" />
+							</a>
 						</div>
 						<div>
 							<a href="<spring:url value="/userhistory" />"
-								class="nav-link active"> History </a>
+								class="nav-link active"> <spring:message code="view.select.location.link.user.history" /> </a>
 						</div>
 					</security:authorize>
 				</div>
 			</li>
 
-			<li class="nav-item mr-5 align-items-center">
-				<security:authorize
+			<li class="nav-item mr-5 align-items-center"><security:authorize
 					access="!isAuthenticated()">
 					<div>
-						<p>Welcome: GUEST</p>
+						<p><spring:message code="view.select.location.label.guest" /></p>
 					</div>
-				</security:authorize> 
-				
-				<security:authorize access="isAuthenticated()">
+				</security:authorize> <security:authorize access="isAuthenticated()">
 					<div class="row align-items-center">
 
 						<div class="row mr-4 ">
-							<p class="mr-2">Welcome:</p>
+							<p class="mr-2"><spring:message code="view.select.location.label.welcome" /></p>
 							<p>
 								<security:authentication property="principal.username" />
 							</p>
@@ -74,7 +68,7 @@
 							<form:form action="${pageContext.request.contextPath}/logout"
 								method="POST" class="form-horizontal">
 								<div>
-									<button type="submit" class="btn btn-link">Logout</button>
+									<button type="submit" class="btn btn-link"><spring:message code="button.logout" /></button>
 								</div>
 							</form:form>
 						</div>
@@ -85,27 +79,39 @@
 
 		<div class="ml-4 mt-4">
 			<div>
-				<h1>LOCATION</h1>
+				<h1>
+					<spring:message code="view.select.location.label.title" />
+				</h1>
 			</div>
 
 			<div>
-				<p>Choose a city to show the weather</p>
+				<p>
+					<spring:message code="view.select.location.label.message" />
+				</p>
 			</div>
 
 			<div>
 				<form:form modelAttribute="locationToShow" method="POST"
 					action="${pageContext.request.contextPath}/weather">
 					<form:select path="stationName" items="${cities}" />
-					<input type="submit" class="btn btn-success" value="Show" />
+					<button type="submit" class="btn btn-success">
+						<spring:message code="view.select.location.button.display.weather" />
+					</button>
 				</form:form>
 			</div>
 
 			<div class="mt-10">
-				<a href="<spring:url value="/" />" class="btn btn-link"> Back</a>
+				<a href="<spring:url value="/" />" class="btn btn-link"> <spring:message
+						code="button.back" /></a>
 			</div>
 
 		</div>
 	</div>
 
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
 </body>
 </html>

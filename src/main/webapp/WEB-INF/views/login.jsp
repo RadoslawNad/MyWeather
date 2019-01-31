@@ -6,22 +6,13 @@
 <html lang="en">
 
 <head>
-
-<title>Login Page</title>
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-<!-- Reference Bootstrap files -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+	
+<title><spring:message code="view.login.label.header" /></title>
 </head>
 
 <body>
@@ -35,7 +26,7 @@
 
 				<div class="panel-heading">
 					<div class="panel-title">
-						<spring:message code="view.login.title" />
+						<spring:message code="view.login.label.title" />
 					</div>
 				</div>
 
@@ -93,7 +84,7 @@
 						<div style="margin-top: 10px" class="form-group">
 							<div class="col-sm-6 controls">
 								<button type="submit" class="btn btn-success">
-									<spring:message code="view.login.button.login" />
+									<spring:message code="button.login" />
 								</button>
 							</div>
 						</div>
@@ -108,5 +99,10 @@
 
 	</div>
 
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 </html>
