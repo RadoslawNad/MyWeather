@@ -88,7 +88,7 @@
 	</div>
 	<a href="<spring:url value="/location" />" class="btn btn-default">
 		<span class="glyphicon-hand-left glyphicon"></span> <spring:message
-			code="button.login" />
+			code="button.back" />
 	</a>
 </body>
 </html>

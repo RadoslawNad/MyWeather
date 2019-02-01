@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.myweather.model.CityDTO;
 import com.myweather.model.User;
 import com.myweather.model.WeatherObject;
 import com.myweather.service.ApiService;
@@ -37,14 +38,13 @@ public class AppController {
 	@RequestMapping(value = "/location", method = RequestMethod.GET)
 	public String getLocationForm(Model model) {
 
-		apiService.populateList();
 		model.addAttribute("cities", apiService.getLocationsName());
-		model.addAttribute("locationToShow", new WeatherObject());
+		model.addAttribute("locationToShow", new CityDTO());
 		return "selectLocation";
 	}
 
 	@RequestMapping(value = "/weather", method = RequestMethod.POST)
-	public String processLocationForm(@ModelAttribute WeatherObject weatherObject, Model model, BindingResult result) {
+	public String processLocationForm(@ModelAttribute CityDTO cityName, Model model, BindingResult result) {
 
 		if (result.hasErrors()) {
 			return "selectLocation";
@@ -55,8 +55,8 @@ public class AppController {
 			throw new RuntimeException("The attempt to bind non-permitted fields"
 					+ StringUtils.arrayToCommaDelimitedString(suppressedField));
 		}
-
-		WeatherObject weatherData = apiService.getLocationByName(weatherObject.getStationName());
+			
+		WeatherObject weatherData = apiService.getLocationByName(cityName.getStationName());
 		userService.saveHistory(getLoggedInUsername(), weatherData);
 		model.addAttribute("objectToDisplay", weatherData);
 		return "displayWeather";
