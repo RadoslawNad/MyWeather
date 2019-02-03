@@ -56,7 +56,7 @@ public class AppController {
 					+ StringUtils.arrayToCommaDelimitedString(suppressedField));
 		}
 			
-		WeatherObject weatherData = apiService.getLocationByName(cityName.getStationName());
+		WeatherObject weatherData = apiService.getWeatherByCity(cityName.getStationName());
 		userService.saveHistory(getLoggedInUsername(), weatherData);
 		model.addAttribute("objectToDisplay", weatherData);
 		return "displayWeather";

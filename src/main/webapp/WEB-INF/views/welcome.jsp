@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="security"
+	uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <!DOCTYPE html>
 <html>
@@ -19,17 +22,49 @@
 
 	<div class="container">
 
-		<ul class="nav justify-content-end btn-toolbar bg-light"
-			role="toolbar">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
 
-			<li class="nav-item"><a class="nav-link active"
-				href="<spring:url value="/login"/>"><spring:message
-						code="button.login" /></a></li>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-			<li class="nav-item"><a class="nav-link active"
-				href="<spring:url value="/register"/>"><spring:message
-						code="button.register" /></a></li>
-		</ul>
+				<!-- is login -->
+				<security:authorize access="isAuthenticated()">
+
+					<div class="navbar-nav ml-auto p-2">
+						<span class="navbar-text"> <spring:message
+								code="view.select.location.label.welcome" />
+						</span> <span class="navbar-text"> <security:authentication
+								property="principal.username" />
+						</span>
+
+						<form:form action="${pageContext.request.contextPath}/logout"
+							method="POST" class="form-horizontal">
+							<div>
+								<button type="submit" class="btn btn-link">
+									<spring:message code="button.logout" />
+								</button>
+							</div>
+						</form:form>
+					</div>
+				</security:authorize>
+
+				<!-- no one is logged in -->
+				<security:authorize access="!isAuthenticated()">
+					<div class="navbar-nav ml-auto p-2">
+						<a class="nav-item nav-link text-primary"
+							href="<spring:url value="/login"/>"> <spring:message
+								code="button.login" />
+
+						</a> <a class="nav-item nav-link text-primary"
+							href="<spring:url value="/register"/>"> <spring:message
+								code="button.register" />
+						</a>
+					</div>
+				</security:authorize>
+
+
+			</div>
+		</nav>
+
 
 		<div class="row justify-content-md-center  mt-5">
 
@@ -41,9 +76,8 @@
 
 		<div class="row justify-content-md-center  mt-5">
 			<a class="btn btn-success" href="<spring:url value="/location"/>">
-				<spring:message code="view.welcome.button.guest" />
+				<spring:message code="view.welcome.button.enter" />
 			</a>
-
 		</div>
 
 	</div>

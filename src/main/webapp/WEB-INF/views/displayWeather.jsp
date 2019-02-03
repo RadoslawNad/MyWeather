@@ -32,16 +32,16 @@
 						<strong><spring:message code="view.display.weather.label.time"/></strong>${objectToDisplay.timeOfMeasurement}:00
 					</p>
 					<p>
-						<strong><spring:message code="view.display.weather.label.temperature"/></strong>${objectToDisplay.temperature} C
+						<strong><spring:message code="view.display.weather.label.temperature"/></strong>${objectToDisplay.temperature} &#x2103;
 					</p>
 					<p>
 						<strong><spring:message code="view.display.weather.label.wind.speed"/></strong>${objectToDisplay.windSpeed} m/s
 					</p>
 					<p>
-						<strong><spring:message code="view.display.weather.label.wind.direction"/></strong>${objectToDisplay.windDirection}
+						<strong><spring:message code="view.display.weather.label.wind.direction"/></strong>${objectToDisplay.windDirection} &#186;
 					</p>
 					<p>
-						<strong><spring:message code="view.display.weather.label.humidity"/></strong>${objectToDisplay.humidity}%
+						<strong><spring:message code="view.display.weather.label.humidity"/></strong>${objectToDisplay.humidity} %
 					</p>
 					<p>
 						<strong><spring:message code="view.display.weather.label.precipitation.summary"/></strong>${objectToDisplay.precipitationSummary}

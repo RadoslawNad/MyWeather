@@ -21,61 +21,82 @@
 
 	<div class="container">
 
-		<ul class="nav bg-light justify-content-between">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
 
-			<li class="nav-item ml-3 align-items-center">
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-				<div class="row">
-					<security:authorize access="hasRole('USER')">
-						<div>
-							<a href="<spring:url value="/userhistory" />"
-								class="nav-link active"> <spring:message
-									code="view.select.location.link.user.history" />
-							</a>
-						</div>
-					</security:authorize>
+				<!-- is User login -->
+				<security:authorize access="hasRole('USER')">
 
-					<security:authorize access="hasRole('ADMIN')">
-						<div>
-							<a href="<spring:url value="/history" />" class="nav-link active">
-								<spring:message code="view.select.location.link.all.history" />
-							</a>
-						</div>
-						<div>
-							<a href="<spring:url value="/userhistory" />"
-								class="nav-link active"> <spring:message code="view.select.location.link.user.history" /> </a>
-						</div>
-					</security:authorize>
-				</div>
-			</li>
-
-			<li class="nav-item mr-5 align-items-center"><security:authorize
-					access="!isAuthenticated()">
-					<div>
-						<p><spring:message code="view.select.location.label.guest" /></p>
+					<div class="navbar-nav">
+						<a class="nav-item nav-link"
+							href="<spring:url value="/userhistory" />"> <spring:message
+								code="view.select.location.link.user.history" />
+						</a>
 					</div>
-				</security:authorize> <security:authorize access="isAuthenticated()">
-					<div class="row align-items-center">
 
-						<div class="row mr-4 ">
-							<p class="mr-2"><spring:message code="view.select.location.label.welcome" /></p>
-							<p>
-								<security:authentication property="principal.username" />
-							</p>
-						</div>
+					<div class="navbar-nav ml-auto p-2">
+						<span class="navbar-text"> <spring:message
+								code="view.select.location.label.welcome" />
+						</span> <span class="navbar-text"> <security:authentication
+								property="principal.username" />
+						</span>
 
-						<div>
-							<form:form action="${pageContext.request.contextPath}/logout"
-								method="POST" class="form-horizontal">
-								<div>
-									<button type="submit" class="btn btn-link"><spring:message code="button.logout" /></button>
-								</div>
-							</form:form>
-						</div>
-
+						<form:form action="${pageContext.request.contextPath}/logout"
+							method="POST" class="form-horizontal">
+							<div>
+								<button type="submit" class="btn btn-link">
+									<spring:message code="button.logout" />
+								</button>
+							</div>
+						</form:form>
 					</div>
-				</security:authorize></li>
-		</ul>
+
+				</security:authorize>
+
+				<!-- is Admin login -->
+				<security:authorize access="hasRole('ADMIN')">
+
+					<div class="navbar-nav">
+						<a class="nav-item nav-link"
+							href="<spring:url value="/userhistory" />"> <spring:message
+								code="view.select.location.link.user.history" />
+						</a> <a class="nav-item nav-link"
+							href="<spring:url value="/history" />"> <spring:message
+								code="view.select.location.link.all.history" />
+						</a>
+					</div>
+
+					<div class="navbar-nav ml-auto p-2">
+						<span class="navbar-text"> <spring:message
+								code="view.select.location.label.welcome" />
+						</span> <span class="navbar-text"> <security:authentication
+								property="principal.username" />
+						</span>
+
+						<form:form action="${pageContext.request.contextPath}/logout"
+							method="POST" class="form-horizontal">
+							<div>
+								<button type="submit" class="btn btn-link">
+									<spring:message code="button.logout" />
+								</button>
+							</div>
+						</form:form>
+					</div>
+				</security:authorize>
+
+				<!-- no one is logged in -->
+				<security:authorize access="!isAuthenticated()">
+					<div class="navbar-nav ml-auto p-2">
+						<span class="navbar-text"> <spring:message
+								code="view.select.location.label.guest" />
+						</span>
+					</div>
+				</security:authorize>
+
+			</div>
+		</nav>
+
 
 		<div class="ml-4 mt-4">
 			<div>

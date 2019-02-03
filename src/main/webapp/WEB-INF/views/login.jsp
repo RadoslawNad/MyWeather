@@ -87,6 +87,11 @@
 									<spring:message code="button.login" />
 								</button>
 							</div>
+							
+							<div class="col-sm-6 controls">
+								<a href="<spring:url value="/" />" class="btn btn-link"> <spring:message
+								code="button.back" /></a>
+							</div>
 						</div>
 
 					</form:form>

@@ -7,6 +7,7 @@
 * [Setup](#setup)
 * [Features](#features)
 * [Status](#status)
+* [License](#license)
 
 ## General info
 The data is obtained through the IMGW API interface in JSON format.
@@ -16,9 +17,9 @@ After logging in as an administrator, you can view your history as well as the h
 During the start of the application, tables are created in a specific database with three users and three access roles.
 
  Users:
- * guest (GUEST access role)
- * user (USER access role)
- * admin (ADMIN access role)
+ * guest (GUEST access role), username guest, password guest
+ * user (USER access role), username user, password user
+ * admin (ADMIN access role), username admin, password admin
  
  
 
@@ -45,3 +46,7 @@ During the start of the application, tables are created in a specific database w
 
 ## Status
 Project is: in progress
+
+## License
+   * EN "The source of data is the Institute of Meteorology and Water Management - National Research Institute".
+   * PL „Źródłem pochodzenia danych jest Instytut Meteorologii i Gospodarki Wodnej – Państwowy Instytut Badawczy”.

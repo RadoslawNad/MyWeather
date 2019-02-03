@@ -11,12 +11,16 @@ import com.myweather.model.CityDTO;
 import com.myweather.model.WeatherObject;
 import com.myweather.rest.client.WeatherClient;
 import com.myweather.service.ApiService;
+import com.myweather.util.WeatherDataConverter;
 
 @Service
 public class ApiServiceImpl implements ApiService {
 
 	@Autowired
 	private WeatherClient weatherClient;
+	
+	@Autowired
+	private WeatherDataConverter weatherDataConverter;
 
 	private List<CityDTO> city = null;
 
@@ -25,9 +29,10 @@ public class ApiServiceImpl implements ApiService {
 		return getCitiesList();
 	}
 
-	public WeatherObject getLocationByName(String name) {
-		String stationId = getStationId(name);
-		return weatherClient.getWeatherByCity(stationId);
+	public WeatherObject getWeatherByCity(String city) {
+		String stationId = getStationId(city);
+		WeatherObject weatherObject=weatherClient.getWeatherByCity(stationId);
+		return weatherDataConverter.converter(weatherObject);
 	}
 
 	//retrieve list of cityNames from city object

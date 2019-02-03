@@ -8,5 +8,5 @@ public interface ApiService {
 	
 	public List<String> getLocationsName();
 	
-	public WeatherObject getLocationByName(String name);
+	public WeatherObject getWeatherByCity(String city);
 }

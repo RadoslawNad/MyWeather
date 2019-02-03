@@ -17,34 +17,34 @@ public class WeatherObject {
 	private int id;
 
 	@JsonProperty("id_stacji")
-	private String stationId;
-	
+	private int stationId;
+
 	@JsonProperty("stacja")
 	private String stationName;
-	
+
 	@JsonProperty("data_pomiaru")
 	private String dateOfMeasurement;
-	
+
 	@JsonProperty("godzina_pomiaru")
-	private String timeOfMeasurement;
-	
+	private int timeOfMeasurement;
+
 	@JsonProperty("temperatura")
-	private String temperature;
-	
+	private float temperature;
+
 	@JsonProperty("predkosc_wiatru")
-	private String windSpeed;
-	
+	private float windSpeed;
+
 	@JsonProperty("kierunek_wiatru")
 	private String windDirection;
-	
+
 	@JsonProperty("wilgotnosc_wzgledna")
-	private String humidity;
-	
+	private float humidity;
+
 	@JsonProperty("suma_opadu")
-	private String precipitationSummary;
-	
+	private float precipitationSummary;
+
 	@JsonProperty("cisnienie")
-	private String pressure;
+	private float pressure;
 
 	public int getId() {
 		return id;
@@ -54,11 +54,11 @@ public class WeatherObject {
 		this.id = id;
 	}
 
-	public String getStationId() {
+	public int getStationId() {
 		return stationId;
 	}
 
-	public void setStationId(String stationId) {
+	public void setStationId(int stationId) {
 		this.stationId = stationId;
 	}
 
@@ -78,27 +78,27 @@ public class WeatherObject {
 		this.dateOfMeasurement = dateOfMeasurement;
 	}
 
-	public String getTimeOfMeasurement() {
+	public int getTimeOfMeasurement() {
 		return timeOfMeasurement;
 	}
 
-	public void setTimeOfMeasurement(String timeOfMeasurement) {
+	public void setTimeOfMeasurement(int timeOfMeasurement) {
 		this.timeOfMeasurement = timeOfMeasurement;
 	}
 
-	public String getTemperature() {
+	public float getTemperature() {
 		return temperature;
 	}
 
-	public void setTemperature(String temperature) {
+	public void setTemperature(float temperature) {
 		this.temperature = temperature;
 	}
 
-	public String getWindSpeed() {
+	public float getWindSpeed() {
 		return windSpeed;
 	}
 
-	public void setWindSpeed(String windSpeed) {
+	public void setWindSpeed(float windSpeed) {
 		this.windSpeed = windSpeed;
 	}
 
@@ -110,27 +110,27 @@ public class WeatherObject {
 		this.windDirection = windDirection;
 	}
 
-	public String getHumidity() {
+	public float getHumidity() {
 		return humidity;
 	}
 
-	public void setHumidity(String humidity) {
+	public void setHumidity(float humidity) {
 		this.humidity = humidity;
 	}
 
-	public String getPrecipitationSummary() {
+	public float getPrecipitationSummary() {
 		return precipitationSummary;
 	}
 
-	public void setPrecipitationSummary(String precipitationSummary) {
+	public void setPrecipitationSummary(float precipitationSummary) {
 		this.precipitationSummary = precipitationSummary;
 	}
 
-	public String getPressure() {
+	public float getPressure() {
 		return pressure;
 	}
 
-	public void setPressure(String pressure) {
+	public void setPressure(float pressure) {
 		this.pressure = pressure;
 	}
 
