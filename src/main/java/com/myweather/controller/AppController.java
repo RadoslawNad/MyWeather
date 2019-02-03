@@ -64,8 +64,7 @@ public class AppController {
 
 	@RequestMapping("/history")
 	public String displayAllHistory(Model model) {
-		List<User> users = userService.getAllHistory();
-		model.addAttribute("users", users);
+		model.addAttribute("users", userService.getAllHistory());
 		return "history";
 	}
 
