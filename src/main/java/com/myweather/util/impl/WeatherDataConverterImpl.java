@@ -27,10 +27,10 @@ public class WeatherDataConverterImpl implements WeatherDataConverter {
 	
 	
 	/**
-	 * converting wind direction from direction degrees to direction names
+	 * converting wind direction from direction degrees to direction name 
 	 * 
-	 * @param degree for example (150)
-	 * @return converted direction in for example(SE)
+	 * @param degree, for example (150)
+	 * @return converted direction in name, for example(SE) 
 	 */
 	private String convertWindDirection(String degree) {
 		float d = Float.parseFloat(degree);

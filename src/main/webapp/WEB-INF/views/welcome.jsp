@@ -79,6 +79,18 @@
 				<spring:message code="view.welcome.button.enter" />
 			</a>
 		</div>
+		
+		<div style="margin-top:150px;">
+			<p class="font-weight-bold"><spring:message code="view.welcome.text.quick.use" /></p>
+			<p class="font-italic"><spring:message code="view.welcome.text.info" /></p>
+			<p><spring:message code="view.welcome.text.user" /></p>
+			<p><spring:message code="view.welcome.text.admin" /></p>
+		</div>
+		
+		<div style="margin-top:100px;">
+			<p class="font-italic"><small><spring:message code="view.welcome.license.en" /></small></p>
+			<p class="font-italic"><small><spring:message code="view.welcome.license.pl" /></small></p>
+		</div>
 
 	</div>
 
